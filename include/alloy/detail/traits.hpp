@@ -2,7 +2,7 @@
 #define ALLOY_DETAIL_TRAITS_HPP
 
 #include "../config.hpp"
-#include "../external.hpp"
+#include "../vendor.hpp"
 
 #include <type_traits>
 
