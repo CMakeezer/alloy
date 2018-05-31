@@ -57,22 +57,20 @@ namespace alloy::detail {
     }
 }
 
-/* clang-format off */
 namespace alloy {
     inline constexpr auto filter = [](auto&& f) {
-        return stream{
-            [&f](auto&& snk) noexcept {
-                return [&f, &snk](auto&&... args) -> decltype(auto) {
-                    return detail::filter(
-                        detail::invoke(static_cast<decltype(f)>(f),
-                            static_cast<decltype(args)>(args))...)(
-                                static_cast<decltype(snk)>(snk))(
-                                    static_cast<decltype(args)>(args)...);
-                };
-            }
+        stream impl = [&f](auto&& snk) noexcept {
+            return [&f, &snk](auto&&... args) -> decltype(auto) {
+                return detail::filter(
+                    detail::invoke(static_cast<decltype(f)>(f),
+                        static_cast<decltype(args)>(args))...)(
+                    static_cast<decltype(snk)>(snk))(
+                    static_cast<decltype(args)>(args)...);
+            };
         };
+
+        return impl;
     };
 }
-/* clang-format off */
 
 #endif
