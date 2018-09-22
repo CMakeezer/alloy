@@ -106,7 +106,7 @@ function(deploy_header_library _lib)
     get_target_property(version ${_lib} INTERFACE_LIB_VERSION)
     get_target_property(dirs ${_lib} INTERFACE_INCLUDE_DIRECTORIES)
 
-    set(include_dest "include")
+    set(include_dest "include/Alloy")
     set(cmake_dest "lib/cmake/${name}")
     set(cmake_src "${CMAKE_BINARY_DIR}/${name}/${cmake_dest}")
 
